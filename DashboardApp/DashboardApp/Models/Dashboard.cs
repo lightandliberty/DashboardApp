@@ -11,7 +11,7 @@ namespace DashboardApp.Models
 {
     public class Dashboard : DbConnection
     {
-        public struct RevenueByDate
+        public struct RevenueByDate // 수익
         {
 
             public string Date { get; set; }
@@ -173,7 +173,70 @@ namespace DashboardApp.Models
             TopProductsList = new List<KeyValuePair<string, int>>();
             UnderstockList = new List<KeyValuePair<string, int>>();
             // Using문을 꼭 사용해야 한다.( * 중요 * )
-//            using(var connection = )
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    SqlDataReader reader; // 쿼리 결과를 읽어 들일 객체 미리 생성
+                    command.Connection = connection; // .Connection에 바깥 SqlConnection 객체 설정
+                    // Get Top 5 Products
+                    command.CommandText = @"select top 5 P.ProductName, sum(OrderItem.Quantity) as Q from OrderItem
+                                            inner join Product P on P.id = OrderItem.ProductId
+                                            inner join [Order] O on O.id = OrderItem.OrderId
+                                            where Orderdate between @fromDate2 and @toDate2
+                                            group by P.ProductName Order by Q desc";
+                    command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
+                    command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
+                    reader = command.ExecuteReader();
+                    while(reader.Read()) // .Read()는 다음 행으로 이동하고, 행이 더 있으면 true.
+                    {
+                        // 행이 더 있는 경우이므로, reader[0]과 reader[1]을 쌍으로 저장.
+                        TopProductsList.Add(new KeyValuePair<string, int>(reader[0].ToString(), (int)reader[1]));
+                    }
+                    reader.Close();
+
+                    // command객체의 내용을 수정하며, 계속 쿼리를 할 수 있는 듯하다.
+                    // Get Understock
+                    command.CommandText = @"select ProductName, Stock
+                                            from Product
+                                            where stock <=6 and IsDiscontinued = 0";
+                    reader = command.ExecuteReader();
+                    while(reader.Read()) // .Read()는 다음 행으로 이동하고, 행이 더 있으면 true. 그 경우, reader[0], reader[1]에 데이터 있음.
+                    {
+                        UnderstockList.Add(
+                            new KeyValuePair<string, int>(reader[0].ToString(), (int)reader[1]));
+                    }
+                    reader.Close();     // 결과를 다 처리하였으므로, reader를 닫는다.
+                }
+            }
         }
+
+        // Public methods
+        public bool LoadData(DateTime startDate, DateTime endDate)
+        {
+            endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, 
+                endDate.Hour, endDate.Minute, 59); // 끝날의 초를 59초로 설정
+            if (startDate != this.startDate || endDate != this.endDate)
+            {
+
+                this.startDate = startDate;
+                this.endDate = endDate;
+                this.numberDays = (endDate - startDate).Days;
+
+                GetNumberItems();
+                GetProductAnalisys();
+                GetOrderAnalisys();
+                Console.WriteLine("데이터가 갱신되었습니다: {0} - {1}", startDate.ToString(), endDate.ToString());
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("데이터가 갱신되지 않았습니다. same query: {0} - {1}", startDate.ToString(), endDate.ToString());
+                return false;
+            }
+
+        }
+
     }
 }
