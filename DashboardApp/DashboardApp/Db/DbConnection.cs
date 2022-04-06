@@ -14,7 +14,7 @@ namespace DashboardApp.Db
         // 생성자
         public DbConnection()
         {
-            connectionString = "Server=(local); DataBase = NorthwindStore; Integrated Security=true";
+            connectionString = "Server=(local); DataBase = SouthwindStore; Integrated Security=true";
         }
 
         // SqlConnection생성자에 connectionString을 전달해서, 새 SqlConnection객체를 생성해서 리턴.

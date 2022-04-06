@@ -64,7 +64,7 @@ namespace DashboardApp.Models
                     command.CommandText = @"select count(id) from [Order]" +
                         "Where OrderDate between @fromDate and @toDate";
                     // 매개변수 연결
-                    command.Parameters.Add("@fromData", System.Data.SqlDbType.DateTime).Value = startDate;
+                    command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
                     NumOrders = (int)command.ExecuteScalar();
                 }
@@ -96,7 +96,7 @@ namespace DashboardApp.Models
                     {
                         // 행이 더 있는 경우이므로, reader[0]과 reader[1]을 쌍으로 저장.
                         resultTable.Add(new KeyValuePair<DateTime, decimal>((DateTime)reader[0], (decimal)reader[1]));
-                        TotalRevenue += (decimal)reader[0];
+                        TotalRevenue += (decimal)reader[1];
                     }
                     TotalProfit = TotalRevenue * 0.2m; // 20%
                     reader.Close();
@@ -186,8 +186,8 @@ namespace DashboardApp.Models
                                             inner join [Order] O on O.id = OrderItem.OrderId
                                             where Orderdate between @fromDate2 and @toDate2
                                             group by P.ProductName Order by Q desc";
-                    command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
-                    command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
+                    command.Parameters.Add("@fromDate2", System.Data.SqlDbType.DateTime).Value = startDate;
+                    command.Parameters.Add("@toDate2", System.Data.SqlDbType.DateTime).Value = endDate;
                     reader = command.ExecuteReader();
                     while(reader.Read()) // .Read()는 다음 행으로 이동하고, 행이 더 있으면 true.
                     {
