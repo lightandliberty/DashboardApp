@@ -27,8 +27,8 @@ namespace DashboardApp.Models
         public int NumSuppliers { get; private set; }
         public int NumProducts { get; private set; }
         public List<KeyValuePair<string, int>> TopProductsList { get; private set; }
-        public List<KeyValuePair<string, int>> UnderstockList { get; private set; }
-        public List<RevenueByDate> GrossRevenueList { get; private set; }
+        public List<KeyValuePair<string, int>> UnderstockList { get; private set; } // 재고 부족
+        public List<RevenueByDate> GrossRevenueList { get; private set; } // 총 매출
         public int NumOrders { get; set; }
         public decimal TotalRevenue { get; set; }
         public decimal TotalProfit { get; set; }
@@ -42,9 +42,12 @@ namespace DashboardApp.Models
         // Private methods
         private void GetNumberItems()
         {
+            // DB에 연결하려면,
+            // SqlConnection, SqlCommand 후, sqlCommand의 .Connection, .CommandText, .Parameters 지정 후, 실행한다.
+            // .ExecuteScalar()는 첫번째 행의 첫번째 열을 반환
             using (SqlConnection connection = GetConnection())
             {
-                connection.Open();
+                try { connection.Open(); } catch(Exception ex) { System.Windows.Forms.MessageBox.Show("connection.Open()에 실패했습니다. DataBase서버 서비스가 켜져 있는지 확인 바랍니다."+ex.ToString(), "SqlConnection.Open() 실패", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation, System.Windows.Forms.MessageBoxDefaultButton.Button1, System.Windows.Forms.MessageBoxOptions.DefaultDesktopOnly); return; }
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
@@ -79,7 +82,7 @@ namespace DashboardApp.Models
 
             using (SqlConnection connection = GetConnection()) // new SqlConnection("Server=(local); DataBase = NorthwindStore; Integrated Security=true") 을 반환
             {
-                connection.Open(); // 연결을 오픈하고,
+                try { connection.Open(); } catch (Exception ex) { System.Windows.Forms.MessageBox.Show("connection.Open()에 실패했습니다. DataBase서버 서비스가 켜져 있는지 확인 바랍니다." + ex.ToString(), "SqlConnection.Open() 실패", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation, System.Windows.Forms.MessageBoxDefaultButton.Button1, System.Windows.Forms.MessageBoxOptions.DefaultDesktopOnly); return; }
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection; // 연결 부분에 connection 대입
@@ -175,7 +178,7 @@ namespace DashboardApp.Models
             // Using문을 꼭 사용해야 한다.( * 중요 * )
             using(SqlConnection connection = GetConnection())
             {
-                connection.Open();
+                try { connection.Open(); } catch (Exception ex) { System.Windows.Forms.MessageBox.Show("connection.Open()에 실패했습니다. DataBase서버 서비스가 켜져 있는지 확인 바랍니다." + ex.ToString(), "SqlConnection.Open() 실패", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation, System.Windows.Forms.MessageBoxDefaultButton.Button1, System.Windows.Forms.MessageBoxOptions.DefaultDesktopOnly); return; }
                 using (SqlCommand command = new SqlCommand())
                 {
                     SqlDataReader reader; // 쿼리 결과를 읽어 들일 객체 미리 생성
