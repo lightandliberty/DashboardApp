@@ -29,14 +29,14 @@ namespace DashboardApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title11 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title12 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.lblTitle = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
@@ -68,6 +68,9 @@ namespace DashboardApp
             this.dgvUnderStock = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
             this.btnOkCustomDate = new System.Windows.Forms.Button();
+            this.lblStartDate = new System.Windows.Forms.Label();
+            this.lblEndDate = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -83,11 +86,12 @@ namespace DashboardApp
             this.dtpStartDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpStartDate.Enabled = false;
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStartDate.Location = new System.Drawing.Point(212, 13);
+            this.dtpStartDate.Location = new System.Drawing.Point(260, 15);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(109, 21);
+            this.dtpStartDate.Size = new System.Drawing.Size(128, 21);
             this.dtpStartDate.TabIndex = 0;
             this.dtpStartDate.Value = new System.DateTime(2022, 2, 16, 0, 0, 0, 0);
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // lblTitle
             // 
@@ -105,9 +109,9 @@ namespace DashboardApp
             this.dtpEndDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpEndDate.Enabled = false;
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEndDate.Location = new System.Drawing.Point(344, 13);
+            this.dtpEndDate.Location = new System.Drawing.Point(426, 13);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(109, 21);
+            this.dtpEndDate.Size = new System.Drawing.Size(128, 21);
             this.dtpEndDate.TabIndex = 3;
             this.dtpEndDate.Value = new System.DateTime(2022, 2, 23, 0, 0, 0, 0);
             // 
@@ -117,7 +121,7 @@ namespace DashboardApp
             this.btnThisMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThisMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThisMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
-            this.btnThisMonth.Location = new System.Drawing.Point(1097, 4);
+            this.btnThisMonth.Location = new System.Drawing.Point(1075, 4);
             this.btnThisMonth.Name = "btnThisMonth";
             this.btnThisMonth.Size = new System.Drawing.Size(120, 30);
             this.btnThisMonth.TabIndex = 4;
@@ -131,7 +135,7 @@ namespace DashboardApp
             this.btnLast30Days.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLast30Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLast30Days.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
-            this.btnLast30Days.Location = new System.Drawing.Point(978, 4);
+            this.btnLast30Days.Location = new System.Drawing.Point(956, 4);
             this.btnLast30Days.Name = "btnLast30Days";
             this.btnLast30Days.Size = new System.Drawing.Size(120, 30);
             this.btnLast30Days.TabIndex = 5;
@@ -145,7 +149,7 @@ namespace DashboardApp
             this.btnLast7Days.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLast7Days.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLast7Days.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
-            this.btnLast7Days.Location = new System.Drawing.Point(859, 4);
+            this.btnLast7Days.Location = new System.Drawing.Point(837, 4);
             this.btnLast7Days.Name = "btnLast7Days";
             this.btnLast7Days.Size = new System.Drawing.Size(120, 30);
             this.btnLast7Days.TabIndex = 6;
@@ -159,7 +163,7 @@ namespace DashboardApp
             this.btnToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
-            this.btnToday.Location = new System.Drawing.Point(740, 4);
+            this.btnToday.Location = new System.Drawing.Point(718, 4);
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(120, 30);
             this.btnToday.TabIndex = 7;
@@ -173,7 +177,7 @@ namespace DashboardApp
             this.btnCustomDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
-            this.btnCustomDate.Location = new System.Drawing.Point(621, 4);
+            this.btnCustomDate.Location = new System.Drawing.Point(599, 4);
             this.btnCustomDate.Name = "btnCustomDate";
             this.btnCustomDate.Size = new System.Drawing.Size(120, 30);
             this.btnCustomDate.TabIndex = 8;
@@ -250,7 +254,7 @@ namespace DashboardApp
             this.panel3.Controls.Add(this.label4);
             this.panel3.Location = new System.Drawing.Point(663, 61);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(554, 54);
+            this.panel3.Size = new System.Drawing.Size(532, 54);
             this.panel3.TabIndex = 11;
             // 
             // lblTotalProfit
@@ -277,54 +281,54 @@ namespace DashboardApp
             // chartGrossRevenue
             // 
             this.chartGrossRevenue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(86)))));
-            chartArea1.Name = "ChartArea1";
-            this.chartGrossRevenue.ChartAreas.Add(chartArea1);
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Legend1";
-            this.chartGrossRevenue.Legends.Add(legend1);
+            chartArea11.Name = "ChartArea1";
+            this.chartGrossRevenue.ChartAreas.Add(chartArea11);
+            legend11.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend11.Name = "Legend1";
+            this.chartGrossRevenue.Legends.Add(legend11);
             this.chartGrossRevenue.Location = new System.Drawing.Point(12, 121);
             this.chartGrossRevenue.Name = "chartGrossRevenue";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartGrossRevenue.Series.Add(series1);
+            series11.ChartArea = "ChartArea1";
+            series11.Legend = "Legend1";
+            series11.Name = "Series1";
+            this.chartGrossRevenue.Series.Add(series11);
             this.chartGrossRevenue.Size = new System.Drawing.Size(824, 300);
             this.chartGrossRevenue.TabIndex = 12;
             this.chartGrossRevenue.Text = "chartGrossRevenue";
-            title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            title1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            title1.Name = "Title1";
-            title1.Text = "Gross revenue";
-            this.chartGrossRevenue.Titles.Add(title1);
+            title11.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            title11.ForeColor = System.Drawing.Color.WhiteSmoke;
+            title11.Name = "Title1";
+            title11.Text = "Gross revenue";
+            this.chartGrossRevenue.Titles.Add(title11);
             // 
             // chartTopProducts
             // 
             this.chartTopProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(86)))));
-            chartArea2.Name = "ChartArea1";
-            this.chartTopProducts.ChartAreas.Add(chartArea2);
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.Name = "Legend1";
-            this.chartTopProducts.Legends.Add(legend2);
+            chartArea12.Name = "ChartArea1";
+            this.chartTopProducts.ChartAreas.Add(chartArea12);
+            legend12.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend12.Name = "Legend1";
+            this.chartTopProducts.Legends.Add(legend12);
             this.chartTopProducts.Location = new System.Drawing.Point(843, 121);
             this.chartTopProducts.Name = "chartTopProducts";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            series2.IsValueShownAsLabel = true;
-            series2.LabelForeColor = System.Drawing.Color.White;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartTopProducts.Series.Add(series2);
-            this.chartTopProducts.Size = new System.Drawing.Size(374, 485);
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            series12.IsValueShownAsLabel = true;
+            series12.LabelForeColor = System.Drawing.Color.White;
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.chartTopProducts.Series.Add(series12);
+            this.chartTopProducts.Size = new System.Drawing.Size(352, 508);
             this.chartTopProducts.TabIndex = 13;
             this.chartTopProducts.Text = "chartTopProducts";
-            title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            title2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            title2.Name = "Title1";
-            title2.Text = "Top 5 Products";
-            this.chartTopProducts.Titles.Add(title2);
+            title12.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            title12.ForeColor = System.Drawing.Color.WhiteSmoke;
+            title12.Name = "Title1";
+            title12.Text = "Top 5 Products";
+            this.chartTopProducts.Titles.Add(title12);
             // 
             // panel4
             // 
@@ -338,7 +342,7 @@ namespace DashboardApp
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(12, 427);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 179);
+            this.panel4.Size = new System.Drawing.Size(200, 202);
             this.panel4.TabIndex = 11;
             // 
             // lblNumProducts
@@ -422,7 +426,7 @@ namespace DashboardApp
             this.panel5.Controls.Add(this.label12);
             this.panel5.Location = new System.Drawing.Point(221, 427);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(615, 179);
+            this.panel5.Size = new System.Drawing.Size(615, 202);
             this.panel5.TabIndex = 12;
             // 
             // dgvUnderStock
@@ -432,7 +436,7 @@ namespace DashboardApp
             this.dgvUnderStock.Location = new System.Drawing.Point(7, 24);
             this.dgvUnderStock.Name = "dgvUnderStock";
             this.dgvUnderStock.RowTemplate.Height = 23;
-            this.dgvUnderStock.Size = new System.Drawing.Size(591, 152);
+            this.dgvUnderStock.Size = new System.Drawing.Size(591, 165);
             this.dgvUnderStock.TabIndex = 3;
             // 
             // label12
@@ -453,7 +457,7 @@ namespace DashboardApp
             this.btnOkCustomDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOkCustomDate.FlatAppearance.BorderSize = 0;
             this.btnOkCustomDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOkCustomDate.Location = new System.Drawing.Point(591, 4);
+            this.btnOkCustomDate.Location = new System.Drawing.Point(569, 4);
             this.btnOkCustomDate.Name = "btnOkCustomDate";
             this.btnOkCustomDate.Size = new System.Drawing.Size(30, 30);
             this.btnOkCustomDate.TabIndex = 9;
@@ -461,12 +465,49 @@ namespace DashboardApp
             this.btnOkCustomDate.Visible = false;
             this.btnOkCustomDate.Click += new System.EventHandler(this.btnOkCustomDate_Click);
             // 
+            // lblStartDate
+            // 
+            this.lblStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
+            this.lblStartDate.Location = new System.Drawing.Point(258, 15);
+            this.lblStartDate.MinimumSize = new System.Drawing.Size(130, 0);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(130, 20);
+            this.lblStartDate.TabIndex = 2;
+            this.lblStartDate.Text = "Mar 13, 2022";
+            this.lblStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblStartDate.Click += new System.EventHandler(this.lblStartDate_Click);
+            // 
+            // lblEndDate
+            // 
+            this.lblEndDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
+            this.lblEndDate.Location = new System.Drawing.Point(424, 13);
+            this.lblEndDate.MinimumSize = new System.Drawing.Size(130, 0);
+            this.lblEndDate.Name = "lblEndDate";
+            this.lblEndDate.Size = new System.Drawing.Size(130, 20);
+            this.lblEndDate.TabIndex = 14;
+            this.lblEndDate.Text = "Mar 13, 2022";
+            this.lblEndDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEndDate.Click += new System.EventHandler(this.lblEndDate_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
+            this.label2.Location = new System.Drawing.Point(402, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(11, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "-";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(1231, 616);
+            this.ClientSize = new System.Drawing.Size(1204, 641);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblEndDate);
+            this.Controls.Add(this.lblStartDate);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.chartTopProducts);
@@ -536,6 +577,9 @@ namespace DashboardApp
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DataGridView dgvUnderStock;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblStartDate;
+        private System.Windows.Forms.Label lblEndDate;
+        private System.Windows.Forms.Label label2;
     }
 }
 

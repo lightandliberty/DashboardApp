@@ -133,5 +133,29 @@ namespace DashboardApp
         {
             LoadData();
         }
+
+        private void lblStartDate_Click(object sender, EventArgs e)
+        {
+            if(currentButton == btnCustomDate)
+            {
+                dtpStartDate.Select();
+                SendKeys.Send("%{DOWN}"); // 키 입력을 활성 응용프로그램에 보냄
+            }
+        }
+
+        private void lblEndDate_Click(object sender, EventArgs e)
+        {
+            if (currentButton == btnCustomDate)
+            {
+                dtpEndDate.Select();
+                SendKeys.Send("%{DOWN}"); // 키 입력을 활성 응용프로그램에 보냄
+            }
+        }
+
+        // 8:46실습중. 숨은 컨트롤은 
+        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
