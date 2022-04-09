@@ -83,6 +83,26 @@ namespace DashboardApp
             // 지금 선택한 버튼을 이전에 선택한 버튼으로 저장
             currentButton = btn; // Set current button
 
+
+            // 커스텀 기간 선택을 눌렀으면, 날짜 선택을 가능하게 만듦.
+            if(btn == btnCustomDate)
+            {
+                dtpStartDate.Enabled = true;
+                dtpEndDate.Enabled = true;
+                btnOkCustomDate.Visible = true; // OK버튼을 보이게
+                lblStartDate.Cursor = Cursors.Hand;   // 날짜 선택 레이블의 아이콘을 손 모양 커서로
+                lblEndDate.Cursor = Cursors.Hand;
+            }
+            else // 커스텀 기간 선택 버튼이 아니면, 날짜 선택을 불가능하게 만들고, OK버튼을 사라지게 하고, 손모양 커서를 원래 커서로 되돌림
+            {
+                dtpStartDate.Enabled = false;
+                dtpEndDate.Enabled = false;
+                btnOkCustomDate.Visible = false; // OK버튼을 보이게
+                lblStartDate.Cursor = Cursors.Default;   // 날짜 선택 레이블의 아이콘을 손 모양 커서로
+                lblEndDate.Cursor = Cursors.Default;
+            }
+
+
             //dtpStartDate.Enabled = false;
             //dtpEndDate.Enabled = false;
             //btnOkCustomDate.Visible = false;
@@ -152,10 +172,23 @@ namespace DashboardApp
             }
         }
 
-        // 8:46실습중. 숨은 컨트롤은 
+        // DateTimePicker의 값이 변하면, 그 위의 lblStartDate의 Text에 반영
         private void dtpStartDate_ValueChanged(object sender, EventArgs e)
         {
+            lblStartDate.Text = dtpStartDate.Text;
+        }
 
+        private void dtpEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            lblEndDate.Text = dtpEndDate.Text;
+        }
+
+        // 폼이 로드될 때 초기화
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            lblStartDate.Text = dtpStartDate.Text;
+            lblEndDate.Text = dtpEndDate.Text;
+            dgvUnderStock.Columns[1].Width = 50;
         }
     }
 }

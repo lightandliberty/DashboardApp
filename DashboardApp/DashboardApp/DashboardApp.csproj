@@ -92,5 +92,29 @@
   <ItemGroup>
     <None Include="Resources\done_tr.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dont2_tr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gradient_person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gradient_revenue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gradient_profit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\suppliers_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\products_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\option_tr.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
